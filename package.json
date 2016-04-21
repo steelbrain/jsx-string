@@ -1,0 +1,32 @@
+{
+  "name": "jsx-string",
+  "version": "1.0.5",
+  "description": "JSX in, strings out",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "apm test",
+    "compile": "ucompiler go",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^2.5.3",
+    "babel-eslint": "^6.0.0",
+    "babel-preset-steelbrain": "^2.0.1",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
+    "ucompiler": "^3.1.8",
+    "ucompiler-plugin-babel": "^3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steelbrain/jsx-string.git"
+  },
+  "keywords": [],
+  "author": "steelbrain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steelbrain/jsx-string/issues"
+  },
+  "homepage": "https://github.com/steelbrain/jsx-string#readme",
+  "dependencies": { }
+}
