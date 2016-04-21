@@ -13,13 +13,13 @@ npm install --save jsx-string
 ```js
 import jsxString from 'jsx-string'
 
-/** @jsx jsxString */
+/** @jsx jsxString.h */
 // ^ tell babel to route all JSX calls to that function
 
 const username = 'someone'
-const query = <methodCall>
+const query = jsxString(<methodCall>
   <param>{username}</param>
-</methodCall>
+</methodCall>)
 console.log(typeof query) // 'string'
 ```
 
