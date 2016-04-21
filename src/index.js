@@ -63,7 +63,5 @@ function jsx(item: any, escape: boolean = true): string {
   return output.join('')
 }
 
-console.log(jsx(<div></div>))
-
 module.exports = jsx
 module.exports.h = h
