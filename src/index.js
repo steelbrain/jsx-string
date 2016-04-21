@@ -38,7 +38,7 @@ function jsx(item: any, escape: boolean = true): string {
         output.push(result)
       }
     }
-    return output.join(' ')
+    return output.join('')
   }
   if (typeof item.name !== 'string' || typeof item.props !== 'object' || !Array.isArray(item.children)) {
     throw new Error('Unknown item encountered in jsx-string')
@@ -50,7 +50,8 @@ function jsx(item: any, escape: boolean = true): string {
       const name = props[i]
       const value = item.props[name]
       if (typeof value !== 'undefined' && value !== 'null') {
-        attributes.push(`${name}="${escapeHTML(value)}"`)
+        const renderFriendlyName = name.replace('_', ':')
+        attributes.push(`${renderFriendlyName}="${escapeHTML(value)}"`)
       }
     }
   }
