@@ -2,6 +2,8 @@
 
 JSX-string is a cool module that allows you to write JSX and receive strings out of it. The main benefits include writing XML as JSX.
 
+Because React by design doesn't support colons (`:`) in attribute names, just wrote `a_b` and it'll be converted to `a:b`
+
 ## Installation
 
 ```sh
@@ -13,13 +15,13 @@ npm install --save jsx-string
 ```js
 import jsxString from 'jsx-string'
 
-/** @jsx jsxString */
+/** @jsx jsxString.h */
 // ^ tell babel to route all JSX calls to that function
 
 const username = 'someone'
-const query = <methodCall>
+const query = jsxString(<methodCall>
   <param>{username}</param>
-</methodCall>
+</methodCall>)
 console.log(typeof query) // 'string'
 ```
 

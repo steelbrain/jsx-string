@@ -28,5 +28,7 @@
     "url": "https://github.com/steelbrain/jsx-string/issues"
   },
   "homepage": "https://github.com/steelbrain/jsx-string#readme",
-  "dependencies": { }
+  "dependencies": {
+    "escape-html": "^1.0.3"
+  }
 }
