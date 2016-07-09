@@ -48,7 +48,7 @@ function jsx(item: any, escape: boolean = true): string {
       const name = props[i]
       const value = item.props[name]
       if (typeof value !== 'undefined' && value !== 'null') {
-        const renderFriendlyName = name.replace('_', ':')
+        const renderFriendlyName = name.replace(/_/g, ':')
         attributes.push(`${renderFriendlyName}="${escapeHTML(value)}"`)
       }
     }

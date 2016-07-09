@@ -24,6 +24,11 @@ describe('JSX String', function() {
       </div>
     )).toBe('<div a="b"><span c:d="e">Hey</span>Man</div>')
   })
+  it('supports attributes with more than one colon', function() {
+    expect(jsxString(
+      <div a_b_c="d" />
+    )).toBe('<div a:b:c="d"></div>')
+  })
   it('supports escaping in attributes', function() {
     expect(jsxString(
       <div a={'<script "" />'}></div>
