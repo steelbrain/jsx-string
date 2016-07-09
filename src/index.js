@@ -1,5 +1,3 @@
-'use strict'
-
 /* @flow */
 /** @jsx h */
 
@@ -9,7 +7,7 @@ function h(name: string, props: ?Object = null, ...children: Array<Object>) {
   return {
     name,
     props,
-    children
+    children,
   }
 }
 
