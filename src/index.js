@@ -1,5 +1,3 @@
-'use strict'
-
 /* @flow */
 /** @jsx h */
 
@@ -9,7 +7,7 @@ function h(name: string, props: ?Object = null, ...children: Array<Object>) {
   return {
     name,
     props,
-    children
+    children,
   }
 }
 
@@ -50,7 +48,7 @@ function jsx(item: any, escape: boolean = true): string {
       const name = props[i]
       const value = item.props[name]
       if (typeof value !== 'undefined' && value !== 'null') {
-        const renderFriendlyName = name.replace('_', ':')
+        const renderFriendlyName = name.replace(/_/g, ':')
         attributes.push(`${renderFriendlyName}="${escapeHTML(value)}"`)
       }
     }
