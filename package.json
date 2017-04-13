@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "babel-preset-steelbrain": "^5.0.2",
-    "eslint-config-steelbrain": "^2.0.0",
+    "eslint-config-steelbrain": "^3.0.0",
     "ucompiler": "^3.1.8",
     "ucompiler-plugin-babel": "^3.1.1"
   },
