@@ -2,6 +2,8 @@
 /** @jsx h */
 
 import escapeHTML from 'escape-html'
+import * as Helpers from './helpers'
+import type { Options } from './types'
 
 function h(name: string, props: ?Object = null, ...children: Array<Object>) {
   return {
@@ -11,36 +13,19 @@ function h(name: string, props: ?Object = null, ...children: Array<Object>) {
   }
 }
 
-function jsx(item: any, escape: boolean = true): string {
-  const type = typeof item
-  if (type === 'undefined' || item === null) {
-    return ''
+function handleString(item: string, options: Options): string {
+  if (options.escape) {
+    return escapeHTML(item)
   }
-  if (type === 'number' || type === 'boolean') {
-    return String(item)
-  }
-  if (type === 'string') {
-    if (escape) {
-      return escapeHTML(item)
-    }
-    return item
-  }
-  if (type !== 'object') {
-    console.warn('[jsx-string] Unknown object type encountered:', type, 'of', item)
-  }
-  if (Array.isArray(item)) {
-    const output = []
-    for (let i = 0, length = item.length; i < length; ++i) {
-      const result = jsx(item[i], escape)
-      if (result.length) {
-        output.push(result)
-      }
-    }
-    return output.join('')
-  }
-  if (typeof item.name !== 'string' || typeof item.props !== 'object' || !Array.isArray(item.children)) {
-    throw new Error('Unknown item encountered in jsx-string')
-  }
+  return item
+}
+
+function handleArray(items: Array<any>, options: Options): string {
+  // eslint-disable-next-line no-use-before-define
+  return items.map(item => handle(item, options)).join('')
+}
+
+function handleObect(item: string, options: Options): string {
   const attributes = []
   if (item.props !== null) {
     const props = Object.keys(item.props)
@@ -53,8 +38,15 @@ function jsx(item: any, escape: boolean = true): string {
       }
     }
   }
-  const output = [`<${item.name}${attributes.length ? ` ${attributes.join(' ')}` : ''}>`]
-  const children = jsx(item.children, escape)
+  const itemName = item.name.replace(/_/g, ':')
+  const openingTag = `<${itemName}${attributes.length ? ` ${attributes.join(' ')}` : ''}>`
+  if (!item.children.length) {
+    return `${openingTag.slice(0, -1)} />`
+  }
+
+  const output = [openingTag]
+  // eslint-disable-next-line no-use-before-define
+  const children = handle(item.children, options)
   if (children.length) {
     output.push(children)
   }
@@ -62,5 +54,27 @@ function jsx(item: any, escape: boolean = true): string {
   return output.join('')
 }
 
-module.exports = jsx
+function handle(item: any, options: Options): string {
+  const type = typeof item
+  if (type === 'undefined' || item === null) {
+    return ''
+  }
+  if (type === 'number' || type === 'boolean') {
+    return item.toString()
+  }
+  if (type === 'string') {
+    return handleString(item, options)
+  }
+  if (Array.isArray(item)) {
+    return handleArray(item, options)
+  }
+  if (type === 'object') {
+    return handleObect(item, options)
+  }
+  throw new Error(`Unrecognized input type provided to jsx-string: ${type}`)
+}
+
+module.exports = function(input, options) {
+  return handle(input, Helpers.fillOptions(options))
+}
 module.exports.h = h
