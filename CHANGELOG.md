@@ -1,6 +1,7 @@
 ## 2.0.0
 
 - Self close empty tags
+- Convert second bool param to object
 - Replace `_` with `:` in attribute names to help with XML generation
 
 ## 1.0.1
