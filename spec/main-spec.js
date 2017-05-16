@@ -24,14 +24,19 @@ describe('JSX String', function() {
       </div>
     )).toBe('<div a="b"><span c:d="e">Hey</span>Man</div>')
   })
-  it('supports attributes with more than one colon', function() {
+  it('supports attributes with more than one colon in self closing tags', function() {
     expect(jsxString(
       <div a_b_c="d" />
-    )).toBe('<div a:b:c="d"></div>')
+    )).toBe('<div a:b:c="d" />')
   })
   it('supports escaping in attributes', function() {
     expect(jsxString(
       <div a={'<script "" />'}></div>
-    )).toBe('<div a="&lt;script &quot;&quot; /&gt;"></div>')
+    )).toBe('<div a="&lt;script &quot;&quot; /&gt;" />')
+  })
+  it('supports disabling escaping', function() {
+    expect(jsxString(
+      <div>{'<script />'}</div>, { escape: false }
+    )).toBe('<div><script /></div>')
   })
 })

@@ -4,3 +4,4 @@ node_modules
 /spec
 .flowconfig
 .DS_Store
+*.log

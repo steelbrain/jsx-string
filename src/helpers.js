@@ -9,7 +9,7 @@ export function fillOptions(param): Options {
 
   if (typeof given.escape !== 'undefined') {
     options.escape = !!given.escape
-  }
+  } else options.escape = true
 
   return options
 }
