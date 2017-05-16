@@ -53,7 +53,8 @@ function jsx(item: any, escape: boolean = true): string {
       }
     }
   }
-  const output = [`<${item.name}${attributes.length ? ` ${attributes.join(' ')}` : ''}>`]
+  const itemName = item.name.replace(/_/g, ':')
+  const output = [`<${itemName}${attributes.length ? ` ${attributes.join(' ')}` : ''}>`]
   const children = jsx(item.children, escape)
   if (children.length) {
     output.push(children)
