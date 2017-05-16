@@ -9,19 +9,19 @@ describe('JSX String', function() {
     expect(jsxString(
       <div><span>
         {'Hello World'}
-      </span></div>
+      </span></div>,
     )).toBe('<div><span>Hello World</span></div>')
   })
   it('escapes bodies properly', function() {
     expect(jsxString(
-      <div>{'<script />'}</div>
+      <div>{'<script />'}</div>,
     )).toBe('<div>&lt;script /&gt;</div>')
   })
   it('supports attributes', function() {
     expect(jsxString(
       <div a="b">
         <span c_d="e">Hey</span>Man
-      </div>
+      </div>,
     )).toBe('<div a="b"><span c:d="e">Hey</span>Man</div>')
   })
   it('supports attributes with more than one colon in self closing tags', function() {
