@@ -1,5 +1,6 @@
-## 1.2.0
+## 2.0.0
 
+- Self close empty tags
 - Replace `_` with `:` in attribute names to help with XML generation
 
 ## 1.0.1
