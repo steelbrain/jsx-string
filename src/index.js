@@ -2,6 +2,7 @@
 /** @jsx h */
 
 import escapeHTML from 'escape-html'
+import * as Helpers from './helpers'
 import type { Options } from './types'
 
 function h(name: string, props: ?Object = null, ...children: Array<Object>) {
@@ -73,5 +74,7 @@ function handle(item: any, options: Options): string {
   throw new Error(`Unrecognized input type provided to jsx-string: ${type}`)
 }
 
-module.exports = handle
+module.exports = function(input, options) {
+  return handle(input, Helpers.fillOptions(options))
+}
 module.exports.h = h
