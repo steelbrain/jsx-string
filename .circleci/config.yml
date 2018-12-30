@@ -37,6 +37,9 @@ jobs:
           name: Compile sources
           command: npm run prepare
       - run:
+          name: Lint sources
+          command: npm run lint
+      - run:
           name: Test
           command: npm run test
 
