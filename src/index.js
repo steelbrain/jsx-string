@@ -2,8 +2,20 @@
 /** @jsx h */
 
 import escapeHTML from 'escape-html'
-import * as Helpers from './helpers'
-import type { Options } from './types'
+
+type Options = {
+  escape: boolean,
+}
+function fillOptions(param): Options {
+  const given = param || {}
+  const options = {}
+
+  if (typeof given.escape !== 'undefined') {
+    options.escape = !!given.escape
+  } else options.escape = true
+
+  return options
+}
 
 function h(name: string, props: ?Object = null, ...children: Array<Object>) {
   return {
@@ -25,11 +37,11 @@ function handleArray(items: Array<any>, options: Options): string {
   return items.map(item => handle(item, options)).join('')
 }
 
-function handleObect(item: string, options: Options): string {
+function handleObect(item: Object, options: Options): string {
   const attributes = []
   if (item.props !== null) {
     const props = Object.keys(item.props)
-    for (let i = 0, length = props.length; i < length; ++i) {
+    for (let i = 0, { length } = props; i < length; ++i) {
       const name = props[i]
       const value = item.props[name]
       if (typeof value !== 'undefined' && value !== 'null') {
@@ -74,7 +86,7 @@ function handle(item: any, options: Options): string {
   throw new Error(`Unrecognized input type provided to jsx-string: ${type}`)
 }
 
-module.exports = function(input, options) {
-  return handle(input, Helpers.fillOptions(options))
+module.exports = function(input: any, options: ?Object) {
+  return handle(input, fillOptions(options))
 }
 module.exports.h = h
