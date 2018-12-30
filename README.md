@@ -1,7 +1,5 @@
 # JSX-String
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/steelbrain/jsx-string.svg)](https://greenkeeper.io/)
-
 JSX-string is a cool module that allows you to write JSX and receive strings out of it. The main benefits include writing XML as JSX.
 
 Because React by design doesn't support colons (`:`) in attribute and tags, just write `a_b` and it'll be converted to `a:b`
