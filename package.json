@@ -4,16 +4,18 @@
   "description": "JSX in, strings out",
   "main": "lib/index.js",
   "scripts": {
-    "test": "apm test",
+    "test": "ava spec/*-spec.js",
     "prepare": "npm run compile",
     "compile": "sb-babel-cli src -o lib",
     "watch": "npm run compile -- -w",
-    "lint": "eslint ."
+    "lint": "(eslint .) && (flow check)"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "ava": "^1.0.1",
     "eslint-config-steelbrain": "^6.0.0",
     "flow-bin": "^0.89.0",
     "sb-babel-cli": "^1.0.2"

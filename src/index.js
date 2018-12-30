@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 /** @jsx h */
 
 import escapeHTML from 'escape-html'

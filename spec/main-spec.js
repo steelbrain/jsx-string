@@ -1,38 +1,37 @@
-'use babel'
-
 import jsxString from '..'
+import test from 'ava'
 
 /** @jsx jsxString.h */
 
-describe('JSX String', function() {
-  it('works well', function() {
-    expect(
-      jsxString(
-        <div>
-          <span>Hello World</span>
-        </div>,
-      ),
-    ).toBe('<div><span>Hello World</span></div>')
-  })
-  it('escapes bodies properly', function() {
-    expect(jsxString(<div>{'<script />'}</div>)).toBe('<div>&lt;script /&gt;</div>')
-  })
-  it('supports attributes', function() {
-    expect(
-      jsxString(
-        <div a="b">
-          <span c_d="e">Hey</span>Man
-        </div>,
-      ),
-    ).toBe('<div a="b"><span c:d="e">Hey</span>Man</div>')
-  })
-  it('supports attributes with more than one colon in self closing tags', function() {
-    expect(jsxString(<div a_b_c="d" />)).toBe('<div a:b:c="d" />')
-  })
-  it('supports escaping in attributes', function() {
-    expect(jsxString(<div a={'<script "" />'} />)).toBe('<div a="&lt;script &quot;&quot; /&gt;" />')
-  })
-  it('supports disabling escaping', function() {
-    expect(jsxString(<div>{'<script />'}</div>, { escape: false })).toBe('<div><script /></div>')
-  })
+test('works well', function(t) {
+  t.is(
+    jsxString(
+      <div>
+        <span>Hello World</span>
+      </div>,
+    ),
+    '<div><span>Hello World</span></div>',
+  )
+})
+test('escapes bodies properly', function(t) {
+  t.is(jsxString(<div>{'<script />'}</div>), '<div>&lt;script /&gt;</div>')
+})
+test('supports attributes', function(t) {
+  t.is(
+    jsxString(
+      <div a="b">
+        <span c_d="e">Hey</span>Man
+      </div>,
+    ),
+    '<div a="b"><span c:d="e">Hey</span>Man</div>',
+  )
+})
+test('supports attributes with more than one colon in self closing tags', function(t) {
+  t.is(jsxString(<div a_b_c="d" />), '<div a:b:c="d" />')
+})
+test('supports escaping in attributes', function(t) {
+  t.is(jsxString(<div a={'<script "" />'} />), '<div a="&lt;script &quot;&quot; /&gt;" />')
+})
+test('supports disabling escaping', function(t) {
+  t.is(jsxString(<div>{'<script />'}</div>, { escape: false }), '<div><script /></div>')
 })
