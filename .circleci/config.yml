@@ -3,7 +3,7 @@ jobs:
   build_and_test:
     working_directory: ~/jsx-string
     docker:
-      - image: node:10-jessie
+      - image: node:8-jessie
     steps:
       - checkout
       - restore_cache:

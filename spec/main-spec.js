@@ -1,7 +1,7 @@
-import jsxString from '..'
+import jsxString, { h } from '..'
 import test from 'ava'
 
-/** @jsx jsxString.h */
+/** @jsx h */
 
 test('works well', function(t) {
   t.is(

@@ -24,17 +24,20 @@ export function h(...);
 ## Usage
 
 ```js
-import jsxString from 'jsx-string'
+import jsxString, { h } from 'jsx-string'
 
-/** @jsx jsxString.h */
+/** @jsx h */
 // ^ tell babel to route all JSX calls to that function
 
 const username = 'someone'
-const query = jsxString(<methodCall>
-  <param>{username}</param>
-</methodCall>, {
-  escape: false,
-})
+const query = jsxString(
+  <methodCall>
+    <param>{username}</param>
+  </methodCall>,
+  {
+    escape: false,
+  },
+)
 console.log(typeof query) // 'string'
 ```
 
