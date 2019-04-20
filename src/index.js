@@ -6,6 +6,7 @@ import escapeHTML from 'escape-html'
 type Options = {
   escape: boolean,
 }
+
 function fillOptions(param): Options {
   const given = param || {}
   const options = {}
@@ -86,7 +87,7 @@ function handle(item: any, options: Options): string {
   throw new Error(`Unrecognized input type provided to jsx-string: ${type}`)
 }
 
-module.exports = function(input: any, options: ?Object) {
+export default function(input: any, options: ?Object) {
   return handle(input, fillOptions(options))
 }
-module.exports.h = h
+export { h }
