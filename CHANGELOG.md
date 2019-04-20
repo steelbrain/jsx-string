@@ -1,5 +1,6 @@
 ## 3.0.0
 
+- Package now requires at least Node v8
 - Package is now exported as an es module instead of commonjs
 
 ## 2.0.0
